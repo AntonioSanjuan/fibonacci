@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import {useFibonacciResolver} from './hooks/fibonacciResolver/useFibonacciResolver'
 
 const Fibonacci = () => {
-  const {resolve} = useFibonacciResolver()
+  const {resolve, error} = useFibonacciResolver()
 
   const [index, setIndex] = useState<number>(0)
   const [isRecursive, setIsRecursive] = useState<boolean>(false)
@@ -24,7 +24,7 @@ const Fibonacci = () => {
           <input
             type='number'
             id='fibonacciInput_index'
-            value={index}
+            value={index || 0}
             min='0'
             onChange={(e) => setIndex(e.target.valueAsNumber)}
           />
@@ -32,7 +32,7 @@ const Fibonacci = () => {
         <label>
           <input 
             type="checkbox" 
-            checked={isRecursive}
+            defaultChecked={isRecursive}
             onChange={() => setIsRecursive(!isRecursive)}/> 
           Recursive execution
         </label>
@@ -47,6 +47,7 @@ const Fibonacci = () => {
         </div>
       <div className='OutputContainer'>
         <p>Output</p>
+        { error && <p>ERROR</p>}
         { outputSequence && outputSequence.join(', ')}
       </div>
     </div>
