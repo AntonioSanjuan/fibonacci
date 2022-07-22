@@ -15,7 +15,7 @@ describe('<useFibonacciResolver />', () => {
         expect(Array.isArray(sut)).toBe(true)     
     });
 
-    it('resolve(0) output should be [0]', () => {
+    it('ITERATIVE resolve(0) output should be [0]', () => {
         const { result } = renderHook(() => useFibonacciResolver());
     
         const sut = result.current.resolve(0)
@@ -24,7 +24,7 @@ describe('<useFibonacciResolver />', () => {
         expect(sut).toEqual(expectedResult)    
     });
 
-    it('resolve(1) output should be [0, 1]', () => {
+    it('ITERATIVE resolve(1) output should be [0, 1]', () => {
         const { result } = renderHook(() => useFibonacciResolver());
     
         const sut = result.current.resolve(1)
@@ -34,7 +34,7 @@ describe('<useFibonacciResolver />', () => {
     });
 
 
-    it('resolve(5) output should be [0, 1, 1, 2, 3, 5]', () => {
+    it('ITERATIVE resolve(5) output should be [0, 1, 1, 2, 3, 5]', () => {
         const { result } = renderHook(() => useFibonacciResolver());
     
         const sut = result.current.resolve(5)
@@ -43,7 +43,7 @@ describe('<useFibonacciResolver />', () => {
         expect(sut).toEqual(expectedResult)
     });
 
-    it('resolve(10) output should be [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]', () => {
+    it('ITERATIVE resolve(10) output should be [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]', () => {
         const { result } = renderHook(() => useFibonacciResolver());
     
         const sut = result.current.resolve(10)
