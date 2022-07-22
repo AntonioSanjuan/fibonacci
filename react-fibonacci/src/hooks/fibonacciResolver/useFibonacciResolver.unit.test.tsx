@@ -15,6 +15,15 @@ describe('<useFibonacciResolver />', () => {
         expect(Array.isArray(sut)).toBe(true)     
     });
 
+    it('ITERATIVE resolve(-5) output should be [0]', () => {
+      const { result } = renderHook(() => useFibonacciResolver());
+  
+      const sut = result.current.resolve(-5)
+      const expectedResult: number[] = [0]
+
+      expect(sut).toEqual(expectedResult)    
+    });
+
     it('ITERATIVE resolve(0) output should be [0]', () => {
         const { result } = renderHook(() => useFibonacciResolver());
     
@@ -33,7 +42,6 @@ describe('<useFibonacciResolver />', () => {
         expect(sut).toEqual(expectedResult)    
     });
 
-
     it('ITERATIVE resolve(5) output should be [0, 1, 1, 2, 3, 5]', () => {
         const { result } = renderHook(() => useFibonacciResolver());
     
@@ -47,6 +55,51 @@ describe('<useFibonacciResolver />', () => {
         const { result } = renderHook(() => useFibonacciResolver());
     
         const sut = result.current.resolve(10)
+        const expectedResult: number[] = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+
+        expect(sut).toEqual(expectedResult)
+    });
+
+    it('RECURSIVE resolve(-5) output should be [0]', () => {
+      const { result } = renderHook(() => useFibonacciResolver());
+  
+      const sut = result.current.resolve(-5, true)
+      const expectedResult: number[] = [0]
+
+      expect(sut).toEqual(expectedResult)    
+  });
+    it('RECURSIVE resolve(0) output should be [0]', () => {
+        const { result } = renderHook(() => useFibonacciResolver());
+    
+        const sut = result.current.resolve(0, true)
+        const expectedResult: number[] = [0]
+
+        expect(sut).toEqual(expectedResult)    
+    });
+
+    it('RECURSIVE resolve(1) output should be [0, 1]', () => {
+        const { result } = renderHook(() => useFibonacciResolver());
+    
+        const sut = result.current.resolve(1, true)
+        const expectedResult: number[] = [0, 1]
+
+        expect(sut).toEqual(expectedResult)    
+    });
+
+
+    it('RECURSIVE resolve(5) output should be [0, 1, 1, 2, 3, 5]', () => {
+        const { result } = renderHook(() => useFibonacciResolver());
+    
+        const sut = result.current.resolve(5, true)
+        const expectedResult: number[] = [0, 1, 1, 2, 3, 5]
+
+        expect(sut).toEqual(expectedResult)
+    });
+
+    it('RECURSIVE resolve(10) output should be [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]', () => {
+        const { result } = renderHook(() => useFibonacciResolver());
+    
+        const sut = result.current.resolve(10, true)
         const expectedResult: number[] = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
 
         expect(sut).toEqual(expectedResult)
