@@ -1,5 +1,5 @@
-const useFibonacciResolver = () => {
-    const resolveByIndex = (fibonacciIndex: number): number[] => {
+export const useFibonacciResolver = () => {
+    const resolveByIndex = (fibonacciIndex: number, recursive: boolean = false): number[] => {
         return [0, 1]
     }
 
@@ -8,4 +8,3 @@ const useFibonacciResolver = () => {
     }
 }
 
-export default useFibonacciResolver
