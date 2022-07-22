@@ -13,13 +13,23 @@ const Fibonacci = () => {
     <div className='MainContainer'>
       <div className='InputContainer'>
         <label>
+          Fibonacci index
           <input
+            type='number'
+            id='fibonacciInput_index'
             value={index}
+            min='0'
             onChange={(e) => setIndex(e.target.valueAsNumber)}
           />
-          Fibonacci index
         </label>
-        <button onClick={resolve}>Calculate</button>
+
+        <button 
+        type="button" 
+        onClick={resolve}
+        >
+          Calculate
+        </button>
+
       </div>
       <div className='OutputContainer'>
         <p>Output</p>
