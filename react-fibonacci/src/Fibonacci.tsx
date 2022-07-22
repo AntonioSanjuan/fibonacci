@@ -1,12 +1,18 @@
 import './Fibonacci.css'
 import React, {useState} from 'react'
+import useFibonacciResolver from './hooks/resolverHook/useResolverHook'
 
 const Fibonacci = () => {
-  const [index, setIndex] = useState<number>(0)
-  const [sequence, setSequence] = useState<number[]>([])
+  const {resolveByIndex} = useFibonacciResolver()
 
-  const resolve = () => {
-    console.log('calculating')
+  const [index, setIndex] = useState<number>(0)
+  const [outputSequence, setOutputSequence] = 
+    useState<number[]|undefined>()
+
+  const getNewSequence = () => {
+    setOutputSequence(
+      resolveByIndex(index)
+    )
   }
 
   return (
@@ -25,7 +31,7 @@ const Fibonacci = () => {
 
         <button 
         type="button" 
-        onClick={resolve}
+        onClick={getNewSequence}
         >
           Calculate
         </button>
@@ -33,7 +39,7 @@ const Fibonacci = () => {
       </div>
       <div className='OutputContainer'>
         <p>Output</p>
-        { sequence.join(', ')}
+        { outputSequence && outputSequence.join(', ')}
       </div>
     </div>
   );
