@@ -18,7 +18,7 @@ describe('<Fibonacci />', () => {
     expect(container).toBeDefined();
   });
 
-  it('useFibonacciResolver resolveByIndex should be called once CALCULATE button has been clicked', () => {
+  it('useFibonacciResolver resolve should be called once CALCULATE button has been clicked', () => {
     render(
       <Fibonacci />
     );
@@ -26,10 +26,10 @@ describe('<Fibonacci />', () => {
     const calculateButton = screen.getByRole('button', { name: /Calculate/i });  
     fireEvent.click(calculateButton);
 
-    expect(useFibonacciResolverMock().resolveByIndex).toHaveBeenCalled();
+    expect(useFibonacciResolverMock().resolve).toHaveBeenCalled();
   });
 
-  it('useFibonacciResolver resolveByIndex should be called with the <input /> value', () => {
+  it('useFibonacciResolver resolve should be called with the <input /> value', () => {
     render(
       <Fibonacci />
     );
@@ -40,6 +40,6 @@ describe('<Fibonacci />', () => {
     const calculateButton = screen.getByRole('button', { name: /Calculate/i });  
     fireEvent.click(calculateButton);
 
-    expect(useFibonacciResolverMock().resolveByIndex).toHaveBeenCalledWith(sut);
+    expect(useFibonacciResolverMock().resolve).toHaveBeenCalledWith(sut);
   });
 });

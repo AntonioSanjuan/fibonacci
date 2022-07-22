@@ -1,7 +1,7 @@
-const resolveByIndexStub: number[] = [];
+const resolveOutputStub: number[] = [];
 
-const resolveByIndexMocked = jest.fn(() => resolveByIndexStub);
+const resolveMocked = jest.fn(() => resolveOutputStub);
 
 export const useFibonacciResolverMock = () => ({
-    resolveByIndex: resolveByIndexMocked,
+    resolve: resolveMocked,
 });

@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import {useFibonacciResolver} from './hooks/fibonacciResolver/useFibonacciResolver'
 
 const Fibonacci = () => {
-  const {resolveByIndex} = useFibonacciResolver()
+  const {resolve} = useFibonacciResolver()
 
   const [index, setIndex] = useState<number>(0)
   const [outputSequence, setOutputSequence] = 
@@ -11,7 +11,7 @@ const Fibonacci = () => {
 
   const getNewSequence = () => {
     setOutputSequence(
-      resolveByIndex(index)
+      resolve(index)
     )
   }
 
