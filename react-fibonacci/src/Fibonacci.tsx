@@ -1,6 +1,6 @@
 import './Fibonacci.css'
 import React, {useState} from 'react'
-import useFibonacciResolver from './hooks/resolverHook/useResolverHook'
+import useFibonacciResolver from './hooks/fibonacciResolver/useFibonacciResolver'
 
 const Fibonacci = () => {
   const {resolveByIndex} = useFibonacciResolver()
