@@ -1,6 +1,6 @@
 import './Fibonacci.css'
 import React, {useState} from 'react'
-import useFibonacciResolver from './hooks/fibonacciResolver/useFibonacciResolver'
+import {useFibonacciResolver} from './hooks/fibonacciResolver/useFibonacciResolver'
 
 const Fibonacci = () => {
   const {resolveByIndex} = useFibonacciResolver()
@@ -30,7 +30,7 @@ const Fibonacci = () => {
         </label>
 
         <button 
-        type="button" 
+        type="button"
         onClick={getNewSequence}
         >
           Calculate
