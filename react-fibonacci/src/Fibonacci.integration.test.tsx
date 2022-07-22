@@ -29,7 +29,7 @@ describe('<Fibonacci />', () => {
     expect(useFibonacciResolverMock().resolve).toHaveBeenCalled();
   });
 
-  it('useFibonacciResolver resolve should be called with the <input /> value', () => {
+  it('resolve should be called with the <input /> value and isRecursive FALSE if checkbox is not checked', () => {
     render(
       <Fibonacci />
     );
@@ -40,6 +40,24 @@ describe('<Fibonacci />', () => {
     const calculateButton = screen.getByRole('button', { name: /Calculate/i });  
     fireEvent.click(calculateButton);
 
-    expect(useFibonacciResolverMock().resolve).toHaveBeenCalledWith(sut);
+    expect(useFibonacciResolverMock().resolve).toHaveBeenCalledWith(sut, false);
+  });
+
+  it('resolve should be called with the <input /> value and isRecursive TRUE if checkbox is checked', () => {
+    render(
+      <Fibonacci />
+    );
+    const sut = 25
+
+    const input = screen.getByLabelText('Fibonacci index')
+    fireEvent.change(input, { target: { value: sut } });
+    
+    const recursiveCheckbox = screen.getByLabelText('Recursive execution')
+    fireEvent.click(recursiveCheckbox);
+
+    const calculateButton = screen.getByRole('button', { name: /Calculate/i });  
+    fireEvent.click(calculateButton);
+
+    expect(useFibonacciResolverMock().resolve).toHaveBeenCalledWith(sut, true);
   });
 });

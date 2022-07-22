@@ -6,12 +6,13 @@ const Fibonacci = () => {
   const {resolve} = useFibonacciResolver()
 
   const [index, setIndex] = useState<number>(0)
+  const [isRecursive, setIsRecursive] = useState<boolean>(false)
   const [outputSequence, setOutputSequence] = 
     useState<number[]|undefined>()
 
   const getNewSequence = () => {
     setOutputSequence(
-      resolve(index)
+      resolve(index, isRecursive)
     )
   }
 
@@ -28,15 +29,22 @@ const Fibonacci = () => {
             onChange={(e) => setIndex(e.target.valueAsNumber)}
           />
         </label>
-
-        <button 
-        type="button"
-        onClick={getNewSequence}
-        >
-          Calculate
-        </button>
-
+        <label>
+          <input 
+            type="checkbox" 
+            checked={isRecursive}
+            onChange={() => setIsRecursive(!isRecursive)}/> 
+          Recursive execution
+        </label>
       </div>
+      <div className='ActionContainer'>       
+         <button 
+            type="button"
+            onClick={getNewSequence}
+            >
+              Calculate
+          </button>
+        </div>
       <div className='OutputContainer'>
         <p>Output</p>
         { outputSequence && outputSequence.join(', ')}

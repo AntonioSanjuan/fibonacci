@@ -1,7 +1,6 @@
 const INIT_STATE = [0, 1]
 
 const iterativeResolve = (requestedIndex: number): number[] => {
-
     let output = [...INIT_STATE];
 
     for(let currentIndex = 1; currentIndex < requestedIndex; currentIndex++) {
@@ -11,9 +10,13 @@ const iterativeResolve = (requestedIndex: number): number[] => {
     return output;
 }
 const recursiveResolve = (fibonacciIndex: number): number[] => {
-    return INIT_STATE;
+    if(fibonacciIndex === 1) {
+        return [...INIT_STATE];
+    }
 
-
+    const output = recursiveResolve(fibonacciIndex - 1)
+    output.push(output[fibonacciIndex - 1] + output[fibonacciIndex - 2])
+    return output
 }
 
 export const useFibonacciResolver = () => {
