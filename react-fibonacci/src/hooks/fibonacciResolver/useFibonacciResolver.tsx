@@ -21,17 +21,22 @@ const recursiveResolve = (fibonacciIndex: number): number[] => {
     return output;
 }
 
+const generatorFnResolve = (): any => {
+
+}
+
 export const useFibonacciResolver = () => {
     const [error, setError] = useState<boolean>(false);
-    const resolve = (fibonacciIndex: number, recursive: boolean = false): number[] => {
+    const resolve = (
+        fibonacciIndex: number, 
+        method: 'recursive' | 'iterative' | 'generatorFn'
+    ): number[] => {
         setError(false);
         if(fibonacciIndex <= 0) return [INIT_STATE[0]];
         if(fibonacciIndex === 1) return INIT_STATE;
         
         try {
-            const sequence = recursive ? 
-            recursiveResolve(fibonacciIndex) : 
-            iterativeResolve(fibonacciIndex);
+            const sequence = selectMethod[method](fibonacciIndex)
             return sequence;
 
         }catch (e) {
@@ -40,6 +45,11 @@ export const useFibonacciResolver = () => {
         }
     }
 
+    const selectMethod = {
+        recursive: recursiveResolve,
+        iterative: iterativeResolve,
+        generatorFn: generatorFnResolve
+    }
     return {
         error,
         resolve

@@ -29,7 +29,7 @@ describe('<Fibonacci />', () => {
     expect(useFibonacciResolverMock().resolve).toHaveBeenCalled();
   });
 
-  it('resolve should be called with the <input /> value and isRecursive FALSE if checkbox is not checked', () => {
+  it('resolve should be called with the <input /> value and `iterative` method if checkbox is not checked', () => {
     render(
       <Fibonacci />
     );
@@ -40,10 +40,10 @@ describe('<Fibonacci />', () => {
     const calculateButton = screen.getByRole('button', { name: /Calculate/i });  
     fireEvent.click(calculateButton);
 
-    expect(useFibonacciResolverMock().resolve).toHaveBeenCalledWith(sut, false);
+    expect(useFibonacciResolverMock().resolve).toHaveBeenCalledWith(sut, 'iterative');
   });
 
-  it('resolve should be called with the <input /> value and isRecursive TRUE if checkbox is checked', () => {
+  it('resolve should be called with the <input /> value and `recursive`method if checkbox is checked', () => {
     render(
       <Fibonacci />
     );
@@ -58,6 +58,6 @@ describe('<Fibonacci />', () => {
     const calculateButton = screen.getByRole('button', { name: /Calculate/i });  
     fireEvent.click(calculateButton);
 
-    expect(useFibonacciResolverMock().resolve).toHaveBeenCalledWith(sut, true);
+    expect(useFibonacciResolverMock().resolve).toHaveBeenCalledWith(sut, 'recursive');
   });
 });

@@ -12,7 +12,7 @@ const Fibonacci = () => {
 
   const getNewSequence = () => {
     setOutputSequence(
-      resolve(index, isRecursive)
+      resolve(index, isRecursive ? 'recursive' : 'iterative')
     )
   }
 
