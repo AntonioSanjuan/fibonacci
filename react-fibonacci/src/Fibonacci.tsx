@@ -44,6 +44,12 @@ const Fibonacci = () => {
             >
               Calculate
           </button>
+          <button 
+            type="button"
+            onClick={() => { resolve(15,'generatorFn')}}
+            >
+              TEST
+          </button>
         </div>
       <div className='OutputContainer'>
         <p>Output</p>
