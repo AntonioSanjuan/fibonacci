@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const INIT_STATE = [0, 1];
+export type Methods =  'recursive' | 'iterative' | 'generatorFn';
 
 const iterativeResolve = (requestedIndex: number): number[] => {
     let output = [...INIT_STATE];
@@ -11,6 +12,7 @@ const iterativeResolve = (requestedIndex: number): number[] => {
 
     return output;
 }
+
 const recursiveResolve = (fibonacciIndex: number): number[] => {
     if(fibonacciIndex === 1) {
         return [...INIT_STATE];
@@ -22,11 +24,10 @@ const recursiveResolve = (fibonacciIndex: number): number[] => {
 }
 
 function* generatorFnResolve(arrayOfNumbers: number[]) {
-    let index = 0;
-    while(index < arrayOfNumbers.length) {
-        if(arrayOfNumbers[index] % 2 === 0)
-            yield arrayOfNumbers[index];
-        index++;
+    for(const data of arrayOfNumbers) {
+        if (data % 2 === 0) {
+            yield data;
+        }
     }
 }
 
@@ -43,16 +44,17 @@ const searchPairElements = (): number[] => {
         lastResult = generatorFn.next();
     }
 
-    console.log("🚀 ~ file: useFibonacciResolver.tsx ~ line 39 ~ output", output)
     return output;
 }
+
+
 
 export const useFibonacciResolver = () => {
     const [error, setError] = useState<boolean>(false);
     const resolve = (
         fibonacciIndex: number, 
         method
-        : 'recursive' | 'iterative' | 'generatorFn'
+        : Methods
     ): number[] => {
         setError(false);
         if(fibonacciIndex <= 0) return [INIT_STATE[0]];
@@ -68,11 +70,14 @@ export const useFibonacciResolver = () => {
         }
     }
 
+
     const selectMethod = {
         recursive: recursiveResolve,
         iterative: iterativeResolve,
         generatorFn: searchPairElements
-        }
+    } as Record<Methods, Function>
+
+
     return {
         error,
         resolve
